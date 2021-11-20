@@ -1,0 +1,44 @@
+{
+  "name": "nft-charts",
+  "version": "1.0.0",
+  "description": "A bot to keep you updated about your favorite Crypto Coins ",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "test",
+    "clean": "rm -Rf ./dist",
+    "build": "npm run clean && tsc && cp ./src/.env ./dist/.env",
+    "start": "npm run build && DEBUG=* node ./dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DouglasMarq/NFT-Charts.git"
+  },
+  "author": "Douglas Marques (douglas.marq.alves@outlook.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DouglasMarq/NFT-Charts/issues"
+  },
+  "homepage": "https://github.com/DouglasMarq/NFT-Charts#readme",
+  "devDependencies": {
+    "@types/config": "^0.0.40",
+    "@types/debug": "^4.1.7",
+    "@types/node": "^16.11.9",
+    "@types/node-telegram-bot-api": "^0.53.2",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^8.2.0",
+    "eslint-config-google": "^0.14.0",
+    "ts-node": "^10.4.0",
+    "tsc-watch": "^4.5.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "config": "^3.3.6",
+    "debug": "^4.3.2",
+    "dotenv": "^10.0.0",
+    "inversify": "^6.0.1",
+    "node-telegram-bot-api": "^0.54.0",
+    "reflect-metadata": "^0.1.13"
+  }
+}
