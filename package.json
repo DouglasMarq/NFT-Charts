@@ -7,7 +7,8 @@
     "test": "test",
     "clean": "rm -Rf ./dist",
     "build": "npm run clean && tsc && cp ./src/.env ./dist/.env",
-    "start": "npm run build && DEBUG=* node ./dist/index.js"
+    "start": "npm run build && DEBUG=* node ./dist/index.js",
+    "watch": "tsc-watch"
   },
   "repository": {
     "type": "git",

@@ -8,7 +8,7 @@ export default class Events {
     private readonly _bot: TelegramBot;
     private readonly _messages: Messages;
 
-    constructor(bot: TelegramBot, @inject(Messages) message: Messages) {
+    constructor(@inject(TelegramBot) bot: TelegramBot, @inject(Messages) message: Messages) {
         debug(`Initiating events`);
         this._bot = bot;
         this._messages = message;
@@ -17,6 +17,7 @@ export default class Events {
 
     private createEvents() {
         this._bot.on('message', (msg) => {
+            debug(`Message received.s`);
             if (!msg ||
                 !msg.chat.id ||
                 msg.from?.is_bot ||

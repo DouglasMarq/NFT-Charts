@@ -1,5 +1,5 @@
 import TelegramBot from 'node-telegram-bot-api';
-import { injectable } from 'inversify';
+import { injectable, inject } from 'inversify';
 import config from 'config';
 import Debug from 'debug';
 import Events from './events';
@@ -10,19 +10,14 @@ export default class Core {
     private _bot: TelegramBot;
     private readonly _events: Events;
 
-    constructor() {
+    constructor(@inject(TelegramBot) bot: TelegramBot, @inject(Events) events: Events) {
         debug(`Starting bot core`);
-        this._bot = this.initBotCore(config.get('secrets.token'), true);
-        this._events = new Events(this._bot);
-    }
-
-    private initBotCore(token: string, polling: boolean = true) {
-        debug(`instantiating bot core`);
-        return new TelegramBot(token, { polling: polling });
+        this._bot = bot;
+        this._events = events;
+        // this._events = new Events(this._bot);
     }
 
     public get GetCore() {
-        if (!this._bot) return this._bot;
-        return this.initBotCore(config.get('secrets.token'), true);
+        return this._bot;
     }
 }
