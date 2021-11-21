@@ -12,19 +12,5 @@ export default class Events {
         debug(`Initiating events`);
         this._bot = bot;
         this._messages = message;
-        this.createEvents();
-    }
-
-    private createEvents() {
-        this._bot.on('message', (msg) => {
-            debug(`Message received.s`);
-            if (!msg ||
-                !msg.chat.id ||
-                msg.from?.is_bot ||
-                !msg.text) return;
-            const chatId: number = msg.chat.id;
-
-            this._bot.sendMessage(chatId, 'Received your message.');
-        });
     }
 }
