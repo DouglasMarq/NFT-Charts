@@ -10,6 +10,30 @@
     "start": "npm run build && DEBUG=* node ./dist/index.js",
     "watch": "tsc-watch"
   },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "jest-extended/all"
+    ],
+    "globals": {
+      "ts-jest": {
+        "isolatedModules": true
+      }
+    },
+    "testEnvironment": "node",
+    "rootDir": "./src",
+    "transform": {
+      ".+\\.(t|j)sx?$": "ts-jest"
+    },
+    "testRegex": "(/__test__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DouglasMarq/NFT-Charts.git"
@@ -27,8 +51,11 @@
     "@types/node-telegram-bot-api": "^0.53.2",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
-    "eslint": "^8.2.0",
+    "eslint": "^8.3.0",
     "eslint-config-google": "^0.14.0",
+    "jest": "^27.3.1",
+    "jest-extended": "^1.1.0",
+    "ts-jest": "^27.0.7",
     "ts-node": "^10.4.0",
     "tsc-watch": "^4.5.0",
     "tslib": "^2.3.1",

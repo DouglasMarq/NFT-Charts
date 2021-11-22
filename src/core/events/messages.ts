@@ -4,16 +4,6 @@ import TelegramBot from 'node-telegram-bot-api';
 const debug = Debug('bot:messages');
 
 const events = {
-    message: (msg: TelegramBot.Message, _bot: TelegramBot) => {
-        if (!msg ||
-            !msg.chat.id ||
-            msg.from?.is_bot ||
-        !msg.text) return;
-        debug(`Message received`);
-        // const chatId: number = msg.chat.id;
-
-        // _bot.sendMessage(chatId, 'Received your message.');
-    },
     start: (msg: TelegramBot.Message, _bot: TelegramBot) => {
         if (!msg ||
             !msg.chat.id ||
@@ -48,7 +38,6 @@ export default class Messages {
     constructor(@inject(TelegramBot) bot: TelegramBot) {
         debug(`Initiating messages events.`);
         this._bot = bot;
-        this._bot.on(`message`, (msg) => events.message(msg, this._bot));
         this._bot.onText(/\/start/, (msg) => events.start(msg, this._bot));
         this._bot.onText(/\!help/, (msg) => events.help(msg, this._bot));
     }
