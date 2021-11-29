@@ -15,8 +15,4 @@ export default class Core {
         this._bot = bot;
         this._events = events;
     }
-
-    public get GetCore() {
-        return this._bot;
-    }
 }
