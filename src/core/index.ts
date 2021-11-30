@@ -1,7 +1,7 @@
 import TelegramBot from 'node-telegram-bot-api';
 import { injectable, inject } from 'inversify';
-import Debug from 'debug';
 import Events from './events';
+import Debug from 'debug';
 const debug = Debug('bot:core');
 
 @injectable()

@@ -9,7 +9,7 @@ export default class Database {
     private readonly _connection: Sequelize;
 
     constructor() {
-        debug(`Starting database connection at ${config.get(`database.connectionName`)}`);
+        debug(`Starting database connection at ${config.get(`database.ip`)}`);
         this._connection = new Sequelize(
             `${config.get(`database.dbname`)}`,
             `${config.get(`database.user`)}`,
