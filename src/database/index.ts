@@ -17,6 +17,9 @@ export default class Database {
             {
                 dialect: 'mysql',
                 host: `${config.get(`database.ip`)}`,
+                retry: {
+                    max: Infinity,
+                },
             });
     }
 

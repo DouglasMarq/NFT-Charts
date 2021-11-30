@@ -10,6 +10,7 @@ import tokensModel from '../domain/models/tokens';
 import usersModel from '../domain/models/users';
 import Service from '../service';
 import Request from '../utils/request';
+import ContractsModel from '../domain/models/contracts';
 
 const container = new Container();
 
@@ -32,6 +33,9 @@ export default function bindContainers() {
         new tokensModel(container.get<Database>(Database),
         ));
     container.bind<usersModel>(usersModel).toConstantValue(new usersModel(
+        container.get<Database>(Database),
+    ));
+    container.bind<ContractsModel>(ContractsModel).toConstantValue(new ContractsModel(
         container.get<Database>(Database),
     ));
 

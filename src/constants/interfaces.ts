@@ -11,8 +11,14 @@ export interface TokenAttributes extends Model {
 
 }
 
-export interface TokenPancake {
-       updated_at: number,
+export interface ContractAttributes extends Model {
+    contract: string;
+    name: string;
+    symbol: string;
+}
+
+export interface ContractPancake {
+       updated_at: string,
        data: {
          name: string,
          symbol: string,
