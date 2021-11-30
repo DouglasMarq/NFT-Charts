@@ -13,6 +13,7 @@ export default class usersModel {
     constructor(@inject(Database) databaseConnection: Database) {
         this._databaseConnection = databaseConnection;
         this._sequelize = databaseConnection.getDatabaseConnection;
+        this._sequelize.query(`CREATE TABLE IF NOT EXISTS users`);
         this._userInstance = this._sequelize.define<UserAttributes>(`users`,
             {
                 id: {

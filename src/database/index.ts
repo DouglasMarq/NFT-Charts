@@ -9,17 +9,14 @@ export default class Database {
     private readonly _connection: Sequelize;
 
     constructor() {
-        debug(`Starting database connection at ${config.get(`database.instance`)}`);
+        debug(`Starting database connection at ${config.get(`database.connectionName`)}`);
         this._connection = new Sequelize(
             `${config.get(`database.dbname`)}`,
             `${config.get(`database.user`)}`,
             `${config.get(`database.pass`)}`,
             {
                 dialect: 'mysql',
-                host: `/cloudsql/${config.get(`database.instance`)}`,
-                dialectOptions: {
-                    socketPath: `/cloudsql/${config.get(`database.instance`)}`,
-                },
+                host: `${config.get(`database.ip`)}`,
             });
     }
 
