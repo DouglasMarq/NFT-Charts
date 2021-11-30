@@ -8,6 +8,8 @@ import config from 'config';
 import Database from '../database';
 import tokensModel from '../domain/models/tokens';
 import usersModel from '../domain/models/users';
+import Service from '../service';
+import Request from '../utils/request';
 
 const container = new Container();
 
@@ -21,6 +23,8 @@ export default function bindContainers() {
     container.bind<Core>(Core).to(Core).inSingletonScope();
     container.bind<Messages>(Messages).to(Messages).inSingletonScope();
     container.bind<Events>(Events).to(Events).inSingletonScope();
+    container.bind<Request>(Request).to(Request).inSingletonScope();
+    container.bind<Service>(Service).to(Service).inSingletonScope();
 
     // Database & Database Models
     container.bind<Database>(Database).to(Database).inSingletonScope();

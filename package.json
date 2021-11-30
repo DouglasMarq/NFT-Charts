@@ -4,11 +4,11 @@
   "description": "A bot to keep you updated about your favorite Crypto Coins ",
   "main": "src/index.ts",
   "scripts": {
-    "test": "test",
     "clean": "rm -Rf ./dist",
     "build": "npm run clean && tsc && cp ./src/.env ./dist/.env",
     "start": "npm run build && DEBUG=* node ./dist/index.js",
-    "watch": "tsc-watch"
+    "watch": "tsc-watch",
+    "test": "jest --runInBand"
   },
   "jest": {
     "setupFilesAfterEnv": [
@@ -63,6 +63,7 @@
     "typescript": "^4.5.2"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "config": "^3.3.6",
     "debug": "^4.3.2",
     "dotenv": "^10.0.0",
