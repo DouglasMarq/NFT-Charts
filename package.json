@@ -4,7 +4,7 @@
   "description": "A bot to keep you updated about your favorite Crypto Coins ",
   "main": "dist/index.js",
   "engines": {
-      "node": ">=14.0.0 <=16.12.0"
+      "node": ">=14.0.0 <=16.13.0"
   },
   "scripts": {
     "clean": "rm -Rf ./dist",

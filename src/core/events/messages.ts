@@ -41,7 +41,7 @@ export default class Messages {
             try {
                 contractResult = await this._service.processContract(contract);
             } catch (ex) {
-                bot.sendMessage(msg.chat.id,e
+                bot.sendMessage(msg.chat.id,
                     `Couldn't find this token, please try again.`,
                     {
                         reply_to_message_id: msg.message_id,
