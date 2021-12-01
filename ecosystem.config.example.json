@@ -1,0 +1,9 @@
+{
+    "name": "NFT-Charts",
+    "script": "/home/user/NFT-Charts/dist/index.js",
+    "error_file":"/home/user/log/nft_charts_error.log",
+    "out_file":"/home/user/log/nft_charts.log",
+    "env": {
+      "NODE_ENV": "production"
+    }
+  }

@@ -9,6 +9,7 @@
   "scripts": {
     "clean": "rm -Rf ./dist",
     "build": "npm run clean && tsc && cp ./src/.env ./dist/.env",
+    "pm2": "pm2 start ecosystem.config.json",
     "start": "npm run build && DEBUG=* node ./dist/index.js",
     "watch": "tsc-watch",
     "test": "jest --runInBand"

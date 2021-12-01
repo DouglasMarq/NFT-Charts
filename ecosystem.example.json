@@ -1,9 +1,0 @@
-{
-    "name": "NFT-Charts",
-    "script": "/home/douglisnha/NFT-Charts/dist/index.js",
-    "error_file":"/home/douglisnha/log/nft_charts_error.log",
-    "out_file":"/home/douglisnha/log/nft_charts.log",
-    "env": {
-      "NODE_ENV": "production"
-    }
-  }
