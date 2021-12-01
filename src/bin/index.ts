@@ -7,10 +7,11 @@ import Debug from 'debug';
 const debug = Debug('bot:init');
 
 (async () => {
-    if (await !existsSync(`${process.cwd()}/.env`)) {
-        debug('.env not found, terminating bot.');
-        process.exit(1);
-    }
+    // TODO -> Don`t know if this is the smartest way, because we need to deploy it serverless.
+    // if (await !existsSync(`${process.cwd()}/.env`)) {
+    //     debug('.env not found, terminating bot.');
+    //     process.exit(1);
+    // }
 
     debug(`Starting Bot`);
     const container = bindContainers();
