@@ -9,7 +9,7 @@ export default class Request {
         this.axios = axios;
     }
 
-    public get(url: string) {
-        return this.axios.get(url);
+    public async get(url: string) {
+        return await this.axios.get(url);
     }
 }

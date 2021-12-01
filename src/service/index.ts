@@ -3,6 +3,8 @@ import Request from '../utils/request';
 import { URLS } from '../constants/constants';
 import { ContractPancake } from '../constants/interfaces';
 import ContractsModel from '../domain/models/contracts';
+import Debug from 'debug';
+const debug = Debug('service:core');
 
 @injectable()
 export default class Service {
@@ -16,7 +18,7 @@ export default class Service {
     }
 
     public async processContract(contract: string) {
-        const result: ContractPancake = (await this._request.get(`${URLS.pancakeURL}/${contract}`)).data;
+        const result: ContractPancake = await (await this._request.get(`${URLS.pancakeURL}/${contract}`)).data;
         result.updated_at = new Date(result.updated_at).toLocaleString();
         return result;
     }

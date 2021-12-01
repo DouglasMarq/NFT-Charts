@@ -14,6 +14,7 @@ const debug = Debug('bot:init');
 
     debug(`Starting Bot`);
     const container = bindContainers();
-    container.get<Database>(Database);
+    // TODO -> Maybe we don`t need a database for now.
+    // container.get<Database>(Database);
     container.get<Core>(Core);
 })();

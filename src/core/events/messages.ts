@@ -1,8 +1,8 @@
 import { injectable, inject } from 'inversify';
 import TelegramBot from 'node-telegram-bot-api';
-import Debug from 'debug';
 import Service from '../../service';
 import { ContractAttributes, ContractPancake } from '../../constants/interfaces';
+import Debug from 'debug';
 const debug = Debug('bot:messages');
 
 @injectable()
@@ -19,12 +19,9 @@ export default class Messages {
             bot.sendMessage(chatId, `Hello there, ${msg.chat.first_name !== undefined ? msg.chat.first_name : ''}!
             Available commands are:
             !help,
-            !addToken [token],
-            !deleteToken [token],
-            !listTokens,
-            !deleteAllTokens`);
+            !token [contract]`);
         },
-        contractOrToken: async (msg: TelegramBot.Message, bot: TelegramBot, service: Service) => {
+        contractOrToken: async (msg: TelegramBot.Message, bot: TelegramBot) => {
             if (!msg) return;
             if ( msg &&
                 !msg.chat.id ||
@@ -40,7 +37,19 @@ export default class Messages {
                     });
             }
 
-            const contractResult: ContractPancake = await service.processContract(contract);
+            let contractResult: ContractPancake;
+            try {
+                contractResult = await this._service.processContract(contract);
+            } catch (ex) {
+                bot.sendMessage(msg.chat.id,e
+                    `Couldn't find this token, please try again.`,
+                    {
+                        reply_to_message_id: msg.message_id,
+                    });
+
+                return;
+            }
+
             const message = `Here's the result for your contract:
             ${contractResult.data.name} contract was updated at: ${contractResult.updated_at}
             Name: ${contractResult.data.name}
@@ -50,6 +59,8 @@ export default class Messages {
             bot.sendMessage(msg.chat.id, message, {
                 reply_to_message_id: msg.message_id,
             });
+
+            return;
         },
         registerContractOrToken: async (msg: TelegramBot.Message,
             bot: TelegramBot,
@@ -85,6 +96,9 @@ export default class Messages {
             this._waitingForCommand = true;
             this._contractCommand = contract;
         },
+        /* TODO -> Refactor this one, maybe make the message protected? So we
+        ** don`t repeat it multiple times.
+        */
         getContractOrToken: async (msg: TelegramBot.Message,
             bot: TelegramBot) => {
             if (!msg) return;
@@ -150,18 +164,19 @@ export default class Messages {
         this._bot.onText(/^\!help|\/start/i, (msg) => this.events.helpOrStart(msg, bot));
         this._bot.onText(/^\!token|\!contract/i, (msg) => this.events.contractOrToken(
             msg,
-            bot,
-            service));
-        this._bot.onText(/^\!addToken|\!addContract|\!registerToken|\!registerContract/i, (msg) => this.events.registerContractOrToken(
-            msg,
-            bot,
-            service));
-        this._bot.onText(/^\!contract|\!token/i, (msg) => this.events.getContractOrToken(
-            msg,
             bot));
-        this._bot.on('message', (msg) => this.events.processYesResponse(
-            msg,
-            bot));
+
+        // TODO -> Refactor those events.
+        // this._bot.onText(/^\!addToken|\!addContract|\!registerToken|\!registerContract/i, (msg) => this.events.registerContractOrToken(
+        //     msg,
+        //     bot,
+        //     service));
+        // this._bot.onText(/^\!contract|\!token/i, (msg) => this.events.getContractOrToken(
+        //     msg,
+        //     bot));
+        // this._bot.on('message', (msg) => this.events.processYesResponse(
+        //     msg,
+        //     bot));
     }
 
     private processYesResponse() {
