@@ -8,8 +8,7 @@
   },
   "scripts": {
     "clean": "rm -Rf ./dist",
-    "build2": "npm run clean && tsc && cp ./src/.env ./dist/.env",
-    "build": "npm run clean && tsc",
+    "build": "npm run clean && tsc && cp ./src/.env ./dist/.env",
     "start": "npm run build && DEBUG=* node ./dist/index.js",
     "watch": "tsc-watch",
     "test": "jest --runInBand"
