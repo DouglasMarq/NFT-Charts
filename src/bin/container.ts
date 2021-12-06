@@ -17,7 +17,9 @@ const container = new Container();
 export default function bindContainers() {
     container.bind<TelegramBot>(TelegramBot).toConstantValue(
         new TelegramBot(
-            config.get('secrets.token'),
+            // @ts-ignore
+            process.env.NODE_ENV === `test` ? process.env.token :
+                config.get('secrets.token'),
             {
                 polling: true,
             }));
@@ -28,16 +30,16 @@ export default function bindContainers() {
     container.bind<Service>(Service).to(Service).inSingletonScope();
 
     // Database & Database Models
-    container.bind<Database>(Database).to(Database).inSingletonScope();
-    container.bind<tokensModel>(tokensModel).toConstantValue(
-        new tokensModel(container.get<Database>(Database),
-        ));
-    container.bind<usersModel>(usersModel).toConstantValue(new usersModel(
-        container.get<Database>(Database),
-    ));
-    container.bind<ContractsModel>(ContractsModel).toConstantValue(new ContractsModel(
-        container.get<Database>(Database),
-    ));
+    // container.bind<Database>(Database).to(Database).inSingletonScope();
+    // container.bind<tokensModel>(tokensModel).toConstantValue(
+    //     new tokensModel(container.get<Database>(Database),
+    //     ));
+    // container.bind<usersModel>(usersModel).toConstantValue(new usersModel(
+    //     container.get<Database>(Database),
+    // ));
+    // container.bind<ContractsModel>(ContractsModel).toConstantValue(new ContractsModel(
+    //     container.get<Database>(Database),
+    // ));
 
     return container;
 }

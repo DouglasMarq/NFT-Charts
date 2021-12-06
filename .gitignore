@@ -2,8 +2,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,node,yarn
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,node,yarn
 
-### envs ###
+### custom ###
 **/.env/
+.vscode
 
 ### Node ###
 # Logs

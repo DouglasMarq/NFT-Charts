@@ -8,6 +8,7 @@ describe('Core test cases', () => {
     let bot: Core;
 
     beforeAll(() => {
+        process.env.NODE_ENV = `test`;
         context = bindContainer();
 
         bot = context.get<Core>(Core);
