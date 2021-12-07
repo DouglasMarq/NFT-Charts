@@ -15,6 +15,7 @@ import ContractsModel from '../domain/models/contracts';
 const container = new Container();
 
 export default function bindContainers() {
+    console.log(`TOKEN::::: ${process.env.token}`);
     container.bind<TelegramBot>(TelegramBot).toConstantValue(
         new TelegramBot(
             // @ts-ignore
@@ -27,7 +28,7 @@ export default function bindContainers() {
     container.bind<Messages>(Messages).to(Messages).inSingletonScope();
     container.bind<Events>(Events).to(Events).inSingletonScope();
     container.bind<Request>(Request).to(Request).inSingletonScope();
-    container.bind<Service>(Service).to(Service).inSingletonScope();
+    // container.bind<Service>(Service).to(Service).inSingletonScope();
 
     // Database & Database Models
     // container.bind<Database>(Database).to(Database).inSingletonScope();

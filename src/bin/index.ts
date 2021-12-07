@@ -7,7 +7,7 @@ import Debug from 'debug';
 const debug = Debug('bot:init');
 
 (async () => {
-    // TODO -> Don`t know if this is the smartest way, because we need to deploy it serverless.
+    // TODO -> Don`t know if this is the smartest way, because we need to deploy it interfaceless.
     // if (await !existsSync(`${process.cwd()}/.env`)) {
     //     debug('.env not found, terminating bot.');
     //     process.exit(1);

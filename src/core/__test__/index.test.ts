@@ -2,6 +2,8 @@ import 'reflect-metadata';
 import { Container } from 'inversify';
 import Core from '..';
 import bindContainer from '../../bin/container';
+import dotenv from 'dotenv';
+dotenv.config();
 
 describe('Core test cases', () => {
     let context: Container;
@@ -9,6 +11,7 @@ describe('Core test cases', () => {
 
     beforeAll(() => {
         process.env.NODE_ENV = `test`;
+        process.env.token = `token here`;
         context = bindContainer();
 
         bot = context.get<Core>(Core);
