@@ -1,5 +1,7 @@
 import 'jest-extended';
 
-describe.skip(`Database test cases`, () =>{
+describe.skip(`Database test cases`, () => {
+    it(`should skip test`, () => {
 
+    });
 });

@@ -6,7 +6,7 @@ const debug = Debug('bot:core');
 
 @injectable()
 export default class Core {
-    private _bot: TelegramBot;
+    _bot: TelegramBot;
     private readonly _events: Events;
 
     constructor(@inject(TelegramBot) bot: TelegramBot,

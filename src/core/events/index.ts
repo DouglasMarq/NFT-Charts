@@ -13,4 +13,6 @@ export default class Events {
         this._bot = bot;
         this._messages = message;
     }
+
+    // TODO - Inserting queue middleware
 }

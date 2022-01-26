@@ -1,6 +1,6 @@
 import 'jest-extended';
 
-describe.skip('Messages test cases', () => {
+describe.skip(`Contracts test cases`, () => {
     it(`should skip test`, () => {
 
     });
