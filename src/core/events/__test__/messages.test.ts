@@ -1,4 +1,6 @@
-describe('Messages test cases', () => {
+import 'jest-extended';
+
+describe.skip('Messages test cases', () => {
 
 
 });

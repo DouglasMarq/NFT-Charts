@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import 'jest-extended';
 import { Container } from 'inversify';
 import Core from '..';
 import bindContainer from '../../bin/container';
@@ -10,14 +11,13 @@ describe('Core test cases', () => {
     let bot: Core;
 
     beforeAll(() => {
-        process.env.NODE_ENV = `test`;
-        process.env.token = `token here`;
         context = bindContainer();
 
         bot = context.get<Core>(Core);
     });
 
     it('Should check if class is instantiated', () => {
-        expect(bot).toBe(typeof Core);
+        expect(bot).not.toBeNull();
+        expect(bot).toBeObject();
     });
 });
