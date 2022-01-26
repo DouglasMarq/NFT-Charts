@@ -6,21 +6,26 @@ import Events from '../core/events';
 import TelegramBot from 'node-telegram-bot-api';
 import config from 'config';
 import Database from '../database';
-import tokensModel from '../domain/models/tokens';
-import usersModel from '../domain/models/users';
-import Service from '../service';
+import tokensModel from '../domain/model/tokens';
+import usersModel from '../domain/model/users';
+import Service from '../domain/service';
 import Request from '../utils/request';
-import ContractsModel from '../domain/models/contracts';
+import ContractsModel from '../domain/model/contracts';
 
-const container = new Container();
+let container: Container;
 
-export default function bindContainers() {
-    console.log(`TOKEN::::: ${process.env.token}`);
+export default function getContainers() {
+    if (!container) bindContainers();
+
+    return container;
+}
+
+export function bindContainers() {
+    container = new Container();
+
     container.bind<TelegramBot>(TelegramBot).toConstantValue(
         new TelegramBot(
-            // @ts-ignore
-            process.env.NODE_ENV === `test` ? process.env.token :
-                config.get('secrets.token'),
+            !config.has(`secret.token`) ? process.env.token! : config.get('secrets.token'),
             {
                 polling: true,
             }));
@@ -41,6 +46,4 @@ export default function bindContainers() {
     // container.bind<ContractsModel>(ContractsModel).toConstantValue(new ContractsModel(
     //     container.get<Database>(Database),
     // ));
-
-    return container;
 }

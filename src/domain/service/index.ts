@@ -1,11 +1,13 @@
 import { inject, injectable } from 'inversify';
-import Request from '../utils/request';
-import { URLS } from '../constants/constants';
-import { ContractPancake } from '../constants/interfaces';
-import ContractsModel from '../domain/models/contracts';
+import Request from '../../utils/request';
+import { URLS } from '../../constants/constants';
+import { ContractPancake } from '../../constants/interfaces';
+import ContractsModel from '../model/contracts';
 import Debug from 'debug';
 const debug = Debug('service:core');
 
+
+// TODO - Organizar `Contracts` no respectivo arquivo
 @injectable()
 export default class Service {
     private readonly _request: Request;

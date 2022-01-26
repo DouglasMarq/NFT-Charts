@@ -1,6 +1,6 @@
 import { injectable, inject } from 'inversify';
 import TelegramBot from 'node-telegram-bot-api';
-import Service from '../../service';
+import Service from '../../domain/service';
 import { ContractPancake } from '../../constants/interfaces';
 import Debug from 'debug';
 const debug = Debug('bot:messages');
