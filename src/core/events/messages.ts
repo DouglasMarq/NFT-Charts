@@ -19,11 +19,12 @@ export default class Messages {
             bot.sendMessage(chatId, `Hello there, ${msg.chat.first_name !== undefined ? msg.chat.first_name : ''}!
             Available commands are:
             !help,
+            !github,
             !token [contract]`);
         },
         contractOrToken: async (msg: TelegramBot.Message, bot: TelegramBot) => {
             if (!msg) return;
-            if ( msg &&
+            if (msg &&
                 !msg.chat.id ||
                 msg.from?.is_bot ||
                 !msg.text) return;
@@ -66,7 +67,7 @@ export default class Messages {
             bot: TelegramBot,
             service: Service) => {
             if (!msg) return;
-            if ( msg &&
+            if (msg &&
                 !msg.chat.id ||
                 msg.from?.is_bot ||
                 !msg.text) return;
@@ -81,7 +82,7 @@ export default class Messages {
             }
 
             const contractResult: ContractPancake = await service.processContract(contract);
-            const message = `Here's the result for your contract:
+            const message = `Here's the result for your contract/token:
             ${contractResult.data.name} contract was updated at: ${contractResult.updated_at}
             Name: ${contractResult.data.name}
             Symbol: ${contractResult.data.symbol}
@@ -102,7 +103,7 @@ export default class Messages {
         getContractOrToken: async (msg: TelegramBot.Message,
             bot: TelegramBot) => {
             if (!msg) return;
-            if ( msg &&
+            if (msg &&
                 !msg.chat.id ||
                 msg.from?.is_bot ||
                 !msg.text) return;
@@ -149,6 +150,16 @@ export default class Messages {
                     reply_to_message_id: msg.message_id,
                 });
         },
+        sendGithubBot: async (msg: TelegramBot.Message,
+            bot: TelegramBot) => {
+            if (!msg) return;
+            if (msg &&
+                !msg.chat.id ||
+                msg.from?.is_bot ||
+                !msg.text) return;
+
+            bot.sendMessage(msg.chat.id, `Hey! You can see how i work here: https://github.com/DouglasMarq/NFT-Charts`);
+        },
     };
     private readonly _bot: TelegramBot;
     // private readonly _service: Service;
@@ -161,6 +172,7 @@ export default class Messages {
         this._bot = bot;
         // this._service = service;
         this._bot.onText(/^\!help|\/start/i, (msg) => this.events.helpOrStart(msg, bot));
+        this._bot.onText(/^\!github/i, (msg) => this.events.sendGithubBot(msg, bot));
         this._bot.onText(/^\!token|\!contract/i, (msg) => this.events.contractOrToken(
             msg,
             bot));
