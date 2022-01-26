@@ -24,9 +24,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run build
     - run: npm test
       env:
         token: 5053478707:AAG2yBcvuYzGoXo3cR71feHvJNYOVIa4s-k
         NODE_ENV: test
-      
+
